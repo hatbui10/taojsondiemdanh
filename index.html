@@ -2,37 +2,55 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trình tạo Dữ liệu Lớp Học</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tool Tạo Dữ liệu Lớp</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; padding: 20px; background: #2c3e50; color: white; }
-        .container { max-width: 600px; margin: auto; background: #34495e; padding: 20px; border-radius: 10px; }
-        input { display: block; width: 100%; margin: 10px 0; padding: 10px; border: none; border-radius: 5px; box-sizing: border-box; }
-        button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        body { font-family: sans-serif; padding: 15px; background: #2c3e50; color: white; margin: 0; }
+        .container { max-width: 600px; margin: auto; background: #34495e; padding: 20px; border-radius: 12px; }
+        input, textarea { display: block; width: 100%; margin: 10px 0; padding: 15px; border: none; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; margin: 8px 0; }
         .btn-add { background: #27ae60; color: white; }
-        .btn-copy { background: #3498db; color: white; margin-top: 10px; }
-        pre { background: #1a252f; padding: 15px; border-radius: 5px; border-left: 5px solid #3498db; overflow-x: auto; font-family: monospace; }
+        .btn-bulk { background: #e67e22; color: white; }
+        .btn-copy { background: #3498db; color: white; }
+        pre { background: #1a252f; padding: 15px; border-radius: 8px; border-left: 5px solid #3498db; overflow-x: auto; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Tạo Dữ liệu Lớp Học</h2>
-    <input type="text" id="tenLop" placeholder="Tên lớp (ví dụ: Lớp 12A1)">
+    <h2 style="text-align:center">Tạo Dữ liệu Lớp Học</h2>
+    <input type="text" id="tenLop" placeholder="Tên lớp (VD: 12A1)">
     
-    <hr>
-    
-    <input type="text" id="hsTen" placeholder="Họ tên">
-    <input type="text" id="hsSdt" placeholder="SĐT">
-    <input type="text" id="hsHocPhi" placeholder="Học phí">
-    <button class="btn-add" onclick="themHs()">+ Thêm vào danh sách</button>
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+        <h4 style="margin-top:0">Thêm đơn lẻ:</h4>
+        <input type="text" id="hsTen" placeholder="Họ tên">
+        <input type="tel" id="hsSdt" placeholder="SĐT">
+        <input type="text" id="hsHocPhi" placeholder="Học phí">
+        <button class="btn-add" onclick="themHs()">+ Thêm vào danh sách</button>
+    </div>
 
-    <h3>Kết quả (Dạng sạch):</h3>
-    <pre id="jsonOutput">// Nhập thông tin lớp và học sinh ở trên</pre>
-    <button class="btn-copy" onclick="copyJson()">📋 Copy vào Code</button>
+    <div style="margin-top: 20px;">
+        <h4 style="margin-top:0">Thêm hàng loạt từ Excel/Sheets:</h4>
+        <textarea id="bulkInput" rows="4" placeholder="Dán (Copy từ Excel/Sheets rồi dán vào đây)"></textarea>
+        <button class="btn-bulk" onclick="themHangLoat()">📥 Thêm danh sách từ Excel</button>
+    </div>
+
+    <h3>Kết quả định dạng sạch:</h3>
+    <pre id="jsonOutput">// Dữ liệu sẽ xuất hiện tại đây...</pre>
+    <button class="btn-copy" onclick="copyJson()">📋 Copy định dạng sạch</button>
 </div>
 
 <script>
     let danhSachHs = [];
+
+    function updateOutput(tenLop) {
+        let output = `{\n    tenLop: "${tenLop}",\n    hocSinh: [\n`;
+        output += danhSachHs.map(hs => 
+            `        { ten: "${hs.ten}", lop: "${hs.lop}", sdt: "${hs.sdt}", hocPhi: "${hs.hocPhi}" }`
+        ).join(',\n');
+        output += `\n    ]\n},`;
+        document.getElementById('jsonOutput').innerText = output;
+    }
 
     function themHs() {
         let tenLop = document.getElementById('tenLop').value.trim();
@@ -42,25 +60,44 @@
 
         if(!tenLop || !ten) return alert("Vui lòng nhập Tên lớp và Tên học sinh!");
 
-        danhSachHs.push({ ten: ten, lop: tenLop, sdt: sdt, hocPhi: hocPhi });
+        danhSachHs.push({ ten, lop: tenLop, sdt, hocPhi });
+        updateOutput(tenLop);
         
-        let output = `{\n    tenLop: "${tenLop}",\n    hocSinh: [\n`;
-        output += danhSachHs.map(hs => 
-            `        { ten: "${hs.ten}", lop: "${hs.lop}", sdt: "${hs.sdt}", hocPhi: "${hs.hocPhi}" }`
-        ).join(',\n');
-        output += `\n    ]\n},`;
-        
-        document.getElementById('jsonOutput').innerText = output;
-        
-        // Reset input
         document.getElementById('hsTen').value = '';
         document.getElementById('hsSdt').value = '';
         document.getElementById('hsHocPhi').value = '';
+        document.getElementById('hsTen').focus();
     }
+
+    function themHangLoat() {
+    let rawText = document.getElementById('bulkInput').value.trim();
+    let tenLop = document.getElementById('tenLop').value.trim();
+    
+    // Yêu cầu người dùng nhập thứ tự cột (Ví dụ: cột 1 là tên, cột 5 là SĐT)
+    let colTen = prompt("Cột thứ mấy là Họ tên? (Ví dụ: 1)", "1") - 1;
+    let colSdt = prompt("Cột thứ mấy là SĐT? (Ví dụ: 5)", "5") - 1;
+
+    if(!tenLop) return alert("Nhập Tên lớp trước!");
+
+    let lines = rawText.split('\n');
+    lines.forEach(line => {
+        let parts = line.split('\t'); 
+        if(parts.length > Math.max(colTen, colSdt)) {
+            danhSachHs.push({ 
+                ten: parts[colTen].trim(), 
+                lop: tenLop, 
+                sdt: parts[colSdt].trim(), 
+                hocPhi: "0" 
+            });
+        }
+    });
+    updateOutput(tenLop);
+}
+
 
     function copyJson() {
         let text = document.getElementById('jsonOutput').innerText;
-        navigator.clipboard.writeText(text).then(() => alert("Đã copy định dạng sạch!"));
+        navigator.clipboard.writeText(text).then(() => alert("Đã copy!"));
     }
 </script>
 
