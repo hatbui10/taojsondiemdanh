@@ -2,143 +2,296 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Tool Tạo Dữ liệu Lớp</title>
+    <title>Generator Tự Động - Dropdown Danh Sách Lớp</title>
     <style>
-        body { font-family: sans-serif; padding: 15px; background: #2c3e50; color: white; margin: 0; }
-        .container { max-width: 600px; margin: auto; background: #34495e; padding: 20px; border-radius: 12px; }
-        .row { display: flex; gap: 10px; }
-        .row input, .row select { flex: 1; width: 50%; }
-        input, select, textarea { display: block; width: 100%; margin: 8px 0; padding: 12px; border: none; border-radius: 8px; box-sizing: border-box; font-size: 16px; background: white; color: black; }
-        select { height: 46px; cursor: pointer; }
-        button { width: 100%; padding: 15px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; margin: 8px 0; }
-        .btn-bulk { background: #e67e22; color: white; }
-        .btn-copy { background: #3498db; color: white; }
-        pre { background: #1a252f; padding: 15px; border-radius: 8px; border-left: 5px solid #3498db; overflow-x: auto; font-size: 14px; white-space: pre; color: #eaf2f8; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0c0d0f; color: #d1d5db; margin: 40px; }
+        .wrapper { max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.03); border: 1px solid #334155; padding: 25px; border-radius: 12px; }
+        h2 { color: #fbbf24; border-bottom: 1px solid #334155; padding-bottom: 10px; margin-top: 0; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: bold; margin-bottom: 6px; color: #94a3b8; font-size: 14px;}
+        input[type="text"], select, textarea { width: 100%; padding: 10px; background: #000; color: #fbbf24; border: 1px solid #475569; border-radius: 6px; box-sizing: border-box; }
+        select { color: #fff; cursor: pointer; }
+        textarea { height: 130px; font-family: monospace; color: #fff; }
+        button { background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
+        button:hover { background: #1d4ed8; }
+        .output-section { margin-top: 25px; display: none; }
+        #codeResult { background: #000; color: #a7f3d0; padding: 15px; border-radius: 6px; border: 1px solid #059669; overflow-x: auto; white-space: pre-wrap; font-family: monospace; font-size: 13px; max-height: 350px; }
+        .btn-copy-code { background: #6366f1; margin-bottom: 6px; }
+        .preview-slug { font-size: 12px; color: #10b981; margin-top: 4px; display: block; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2 style="text-align:center">Tạo Dữ liệu Lớp (Tên & SĐT)</h2>
+<div class="wrapper">
+    <h2>🛠️ Bộ Tạo Lịch Học Tự Động (Chọn Lớp Từ Dropdown)</h2>
     
-    <div class="row">
-        <select id="tenLop">
-            <option value="SVIP">SVIP - L4-7/Lê Thu Hà</option>
-            <option value="SKY - KID">SKY - KID</option>
-            <option value="SMART-KID">SMART-KID</option>
-            <option value="CLOUD-KID MG+1">CLOUD-KID MG+1</option>
-            <option value="OZON-L2+3/Ngô Hằng">OZON-L2+3/Ngô Hằng</option>
-            <option value="MICKEY - L2+3/Thị Phương">MICKEY - L2+3/Thị Phương</option>
-            <option value="OXFORD  L4/Thu Phương">OXFORD  L4/Thu Phương</option>
-            <option value="QUEST - L4 Thu Phương">QUEST - L4 Thu Phương</option>
-            <option value="CAMBRIDGE - L4/Nhung">CAMBRIDGE - L4/Nhung</option>
-            <option value="KING - L4/Thu Phương">KING - L4/Thu Phương</option>
-            <option value="GALAXY - L4/Minh Phương">GALAXY - L4/Minh Phương</option>
-            <option value="KIND L5 /Tân">KIND L5 - Tân</option>
-            <option value="APOLLO L5/Yến ">APOLLO L5 - Yến </option>
-            <option value="LIKE L5/Thu Phương">LIKE L5-Thu Phương</option>
-            <option value="SMILE-L6-Hà An">SMILE-L6-Hà An</option>
-            <option value="STAR-L6-Thanh Thảo">STAR-L6-Thanh Thảo</option>
-            <option value="GOOD-L6-Hà An ">GOOD-L6-Hà An </option>
-            <option value="MARS - L6-Ngô Hằng">MARS - L6-Ngô Hằng</option>
-            <option value="PARIS-L6/Minh Phương">PARIS-L6/Minh Phương</option>
-            <option value="EVIC">EVIC</option>
-            <option value="KID - L7- Thanh Thảo">KID - L7- Thanh Thảo</option>
-            <option value="BOSS-VIP - L7/Lê Thu Hà">BOSS-VIP - L7/Lê Thu Hà</option>
-            <option value="MOON-L7/Trà My">MOON-L7/Trà My</option>
-            <option value="ILA-L7/Thu Hà">ILA-L7/Thu Hà</option>
-            <option value="DELTA-L7/Phương">DELTA-L7/Phương</option>
-            <option value="Happy - L8/Mai Ly">Happy - L8/Mai Ly</option>
-            <option value="Sun - L8/Mai Ly">Sun - L8/Mai Ly</option>
-            <option value="High - L8/Thu Hà">High - L8/Thu Hà</option>
-            <option value="HOPE-L8/TRÀ MY">HOPE-L8/TRÀ MY</option>
-            <option value="BIG-L9/Mai Ly">BIG-L9/Mai Ly</option>
-            <option value="SUPER - L9/Thu Hà">SUPER - L9/Thu Hà</option>
-            <option value="SEA - L9/Thu Hà">SEA - L9/Thu Hà</option>
-            <option value="CLC-L9/Thu Hà">CLC-L9/Thu Hà</option>
-            <option value="WIN - L10/Thu Hà">WIN - L10/Thu Hà</option>
-            <option value="SMART - L10/Hà An">SMART - L10/Hà An</option>
-            <option value="CLOUD - L10/Hà An">CLOUD - L10/Hà An</option>
-            <option value="TRY - L10/Thu Hà">TRY - L10/Thu Hà</option>
-            <option value="CAN - L11/Lê Thu Hà">CAN - L11/Lê Thu Hà</option>
-            <option value="OCEAN-L11">OCEAN-L11</option>
-            <option value="OCE">OCE</option>
-            <option value="VICTORYA">VICTORYA</option>
-            <option value="ATHENA-L12/Mai Ly">ATHENA-L12/Mai Ly</option>
-            <option value="IELTS-WONDERFUL/Thu Hà">IELTS-WONDERFUL/Thu Hà</option>
-            <option value="SPACEX">SPACEX</option>
-            <option value="FUN - IE-L12/Lê Thu Hà">FUN - IE-L12/Lê Thu Hà</option>
-            <option value=" IELTS 3/26"> IELTS 3/26</option>
-            <option value="L12-BLUE">L12-BLUE</option>
-            <option value="E1A - L12/ Lê Thu Hà">E1A - L12/ Lê Thu Hà</option>
-        </select>
-        
-        <select id="thuHoc">
-            <option value="Thứ 2">Thứ 2</option>
-            <option value="Thứ 3">Thứ 3</option>
-            <option value="Thứ 4">Thứ 4</option>
-            <option value="Thứ 5">Thứ 5</option>
-            <option value="Thứ 6">Thứ 6</option>
-            <option value="Thứ 7">Thứ 7</option>
-            <option value="Chủ Nhật">Chủ Nhật</option>
-        </select>
-    </div>
-    
-    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-top: 10px;">
-        <h4 style="margin-top:0">Thêm hàng loạt từ Excel (Cột Tên & Cột SĐT):</h4>
-        <textarea id="bulkInput" rows="5" placeholder="Dán dữ liệu từ Excel vào đây..."></textarea>
-        <button class="btn-bulk" onclick="themHangLoat()">📥 Thêm từ Excel</button>
+    <div class="form-group">
+        <label>1. Tên Thứ hiển thị & ID Ngày:</label>
+        <input type="text" id="dayText" value="THỨ 3" oninput="syncAllIDs()">
+        <span class="preview-slug">👉 Mã ID Ngày: <strong id="dayIdPreview">thu-3</strong></span>
     </div>
 
-    <h3>Kết quả định dạng sạch:</h3>
-    <pre id="jsonOutput">// Dữ liệu sẽ xuất hiện tại đây...</pre>
-    <button class="btn-copy" onclick="copyJson()">📋 Copy định dạng sạch</button>
+    <div class="form-group">
+        <label>2. Thông tin Phiên học & Thời gian:</label>
+        <input type="text" id="timeText" value="18:00 — PHIÊN HỌC" oninput="syncAllIDs()">
+        <span class="preview-slug">👉 Mã ID Thời gian tự sinh: <strong id="timeIdPreview">t1800_thu-3</strong></span>
+    </div>
+
+    <div class="form-group">
+        <label>3. Chọn Tên Lớp (Hệ thống sẽ tự lấy mã ID tương ứng):</label>
+        <select id="classDropdown" onchange="syncAllIDs()">
+            <option value="class1" data-name="LỚP A1">LỚP A1</option>
+            <option value="class2" data-name="LỚP A2">LỚP A2</option>
+            <option value="svip" data-name="SVIP - L4-7/Lê Thu Hà">SVIP - L4-7/Lê Thu Hà</option>
+            <option value="skykid" data-name="SKY - KID">SKY - KID</option>
+            <option value="smartkid" data-name="SMART-KID">SMART-KID</option>
+            <option value="cloudkidmg1" data-name="CLOUD-KID MG+1">CLOUD-KID MG+1</option>
+            <option value="ozonl23ngohang" data-name="OZON-L2+3/Ngô Hằng">OZON-L2+3/Ngô Hằng</option>
+            <option value="mickeyl23thiphuong" data-name="MICKEY - L2+3/Thị Phương">MICKEY - L2+3/Thị Phương</option>
+            <option value="oxfordl4thuphuong" data-name="OXFORD L4/Thu Phương">OXFORD L4/Thu Phương</option>
+            <option value="questl4thuphuong" data-name="QUEST - L4 Thu Phương">QUEST - L4 Thu Phương</option>
+            <option value="cambridgel4nhung" data-name="CAMBRIDGE - L4/Nhung">CAMBRIDGE - L4/Nhung</option>
+            <option value="kingl4thuphuong" data-name="KING - L4/Thu Phương">KING - L4/Thu Phương</option>
+            <option value="galaxyl4minhphuong" data-name="GALAXY - L4/Minh Phương">GALAXY - L4/Minh Phương</option>
+            <option value="kindl5tan" data-name="KIND L5 - Tân">KIND L5 - Tân</option>
+            <option value="apollol5yen" data-name="APOLLO L5 - Yến">APOLLO L5 - Yến</option>
+            <option value="likel5thuphuong" data-name="LIKE L5-Thu Phương">LIKE L5-Thu Phương</option>
+            <option value="smilel6haan" data-name="SMILE-L6-Hà An">SMILE-L6-Hà An</option>
+            <option value="starl6thanhthao" data-name="STAR-L6-Thanh Thảo">STAR-L6-Thanh Thảo</option>
+            <option value="goodl6haan" data-name="GOOD-L6-Hà An">GOOD-L6-Hà An</option>
+            <option value="marsl6ngohang" data-name="MARS - L6-Ngô Hằng">MARS - L6-Ngô Hằng</option>
+            <option value="parisl6minhphuong" data-name="PARIS-L6/Minh Phương">PARIS-L6/Minh Phương</option>
+            <option value="evic" data-name="EVIC">EVIC</option>
+            <option value="kidl7thanhthao" data-name="KID - L7- Thanh Thảo">KID - L7- Thanh Thảo</option>
+            <option value="bossvipl7lethuha" data-name="BOSS-VIP - L7/Lê Thu Hà">BOSS-VIP - L7/Lê Thu Hà</option>
+            <option value="moonl7tramy" data-name="MOON-L7/Trà My">MOON-L7/Trà My</option>
+            <option value="ilal7thuha" data-name="ILA-L7/Thu Hà">ILA-L7/Thu Hà</option>
+            <option value="deltal7phuong" data-name="DELTA-L7/Phương">DELTA-L7/Phương</option>
+            <option value="happyl8maily" data-name="Happy - L8/Mai Ly">Happy - L8/Mai Ly</option>
+            <option value="sunl8maily" data-name="Sun - L8/Mai Ly">Sun - L8/Mai Ly</option>
+            <option value="highl8thuha" data-name="High - L8/Thu Hà">High - L8/Thu Hà</option>
+            <option value="hopel8tramy" data-name="HOPE-L8/TRÀ MY">HOPE-L8/TRÀ MY</option>
+            <option value="bigl9maily" data-name="BIG-L9/Mai Ly">BIG-L9/Mai Ly</option>
+            <option value="superl9thuha" data-name="SUPER - L9/Thu Hà">SUPER - L9/Thu Hà</option>
+            <option value="seal9thuha" data-name="SEA - L9/Thu Hà">SEA - L9/Thu Hà</option>
+            <option value="clcl9thuha" data-name="CLC-L9/Thu Hà">CLC-L9/Thu Hà</option>
+            <option value="winl10thuha" data-name="WIN - L10/Thu Hà">WIN - L10/Thu Hà</option>
+            <option value="smartl10haan" data-name="SMART - L10/Hà An">SMART - L10/Hà An</option>
+            <option value="cloudl10haan" data-name="CLOUD - L10/Hà An">CLOUD - L10/Hà An</option>
+            <option value="tryl10thuha" data-name="TRY - L10/Thu Hà">TRY - L10/Thu Hà</option>
+            <option value="canl11lethuha" data-name="CAN - L11/Lê Thu Hà">CAN - L11/Lê Thu Hà</option>
+            <option value="oceanl11" data-name="OCEAN-L11">OCEAN-L11</option>
+            <option value="oce" data-name="OCE">OCE</option>
+            <option value="victorya" data-name="VICTORYA">VICTORYA</option>
+            <option value="athenal12maily" data-name="ATHENA-L12/Mai Ly">ATHENA-L12/Mai Ly</option>
+            <option value="ieltswonderfulthuha" data-name="IELTS-WONDERFUL/Thu Hà">IELTS-WONDERFUL/Thu Hà</option>
+            <option value="spacex" data-name="SPACEX">SPACEX</option>
+            <option value="funiel12lethuha" data-name="FUN - IE-L12/Lê Thu Hà">FUN - IE-L12/Lê Thu Hà</option>
+            <option value="ielts326" data-name="IELTS 3/26">IELTS 3/26</option>
+            <option value="l12blue" data-name="L12-BLUE">L12-BLUE</option>
+            <option value="e1al12lethuha" data-name="E1A - L12/ Lê Thu Hà">E1A - L12/ Lê Thu Hà</option>
+        </select>
+        <span class="preview-slug">👉 Mã ID Lớp đang chọn: <strong id="classIdPreview">class1</strong></span>
+    </div>
+
+    <div class="form-group">
+        <label>4. Số thứ tự ID học sinh bắt đầu (Ví dụ: 1, 10, 20...):</label>
+        <input type="text" id="startIdNum" value="1" style="width: 100px;">
+    </div>
+
+    <div class="form-group">
+        <label>5. Dán danh sách học sinh (Mỗi người 1 dòng: Tên - Số điện thoại):</label>
+        <textarea id="rawList" placeholder="Nguyễn Minh Phúc - 094 291 6191&#10;Trần Nguyễn Gia Hân (kẹo) - 091 153 6555"></textarea>
+    </div>
+
+    <button onclick="generateMarkup()">⚡ Tạo Mã HTML Tích Hợp Hệ Thống</button>
+
+    <div class="output-section" id="outputArea">
+        <label>Mã HTML được tạo ra để dán vào file chính:</label>
+        <button class="btn-copy-code" onclick="copyToClipboard()">📋 Copy Đoạn Mã</button>
+        <pre id="codeResult"></pre>
+    </div>
 </div>
 
 <script>
-    function themHangLoat() {
-        let rawText = document.getElementById('bulkInput').value.trim();
-        let tenLopChinh = document.getElementById('tenLop').value;
-        
-        if(!rawText) return alert("Vui lòng dán dữ liệu từ Excel!");
+// Hàm chuyển đổi chữ TV thành ID không dấu gạch ngang
+function convertToSlug(text) {
+    let slug = text.toLowerCase();
+    slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/g, "a");
+    slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/g, "e");
+    slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/g, "i");
+    slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/g, "o");
+    slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/g, "u");
+    slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/g, "y");
+    slug = slug.replace(/đ/g, "d");
+    slug = slug.replace(/[^a-z0-9\s-]/g, "");
+    slug = slug.replace(/\s+/g, "-");
+    return slug.trim().replace(/^-+|-+$/g, "") || "slug";
+}
 
-        let htmlOutput = "";
-        let lines = rawText.split('\n');
-        
-        lines.forEach((line, index) => {
-            let parts = line.split('\t');
-            let ten = parts[0] ? parts[0].trim() : "";
-            // Tự dò số điện thoại: ưu tiên cột cuối, nếu không phải số thì dò cột áp chót
-            let sdt = parts[parts.length - 1] ? parts[parts.length - 1].trim() : "";
-            if (!/^\d[\d\s-]*\d$/.test(sdt) && parts.length > 1) {
-                sdt = parts[parts.length - 2] ? parts[parts.length - 2].trim() : "";
-            }
+function convertTimeToId(timeText, dayId) {
+    let numbers = timeText.replace(/[^0-9]/g, "");
+    if (!numbers) numbers = "time";
+    return `t${numbers}_${dayId}`;
+}
 
-            if(ten) {
-                let stId = "st_" + tenLopChinh.replace(/\W/g, '') + "_" + (index + 1);
-                htmlOutput += `
-<div class="student-card" id="${stId}">
-    <div>${index + 1}. ${ten}</div>
-    <div class="btn-group">
-        <button class="btn-yes" onclick="setAttendance('${stId}', '${tenLopChinh}')">Có</button>
-        <button class="btn-no" onclick="setAttendance('${stId}', '${tenLopChinh}')">Vắng</button>
-        <a href="tel:${sdt}" class="btn-call">📞 ${sdt}</a>
-    </div>
-    <select onchange="moveStudentDirect('${stId}', this.value)">
-        <option value="">➡️ Chuyển lớp...</option>
-        <option value="${tenLopChinh}">Giữ nguyên</option>
-    </select>
-    <select onchange="updateClassAbsentList('${tenLopChinh}')">
-        <option value="">-- Ghi chú --</option>
-        <option value="Nghỉ phép">Nghỉ phép</option>
-        <option value="Đi muộn">Đi muộn</option>
-    </select>
-</div>\n`;
-            }
-        });
-        
-        document.getElementById('jsonOutput').innerText = htmlOutput;
+// Đồng bộ hiển thị ID xem trước
+function syncAllIDs() {
+    const dayText = document.getElementById('dayText').value;
+    const timeText = document.getElementById('timeText').value;
+    const classSelect = document.getElementById('classDropdown');
+    
+    const dayId = convertToSlug(dayText);
+    const timeId = convertTimeToId(timeText, dayId);
+    const classId = classSelect.value; // Lấy trực tiếp ID từ value của dropdown
+
+    document.getElementById('dayIdPreview').innerText = dayId;
+    document.getElementById('timeIdPreview').innerText = timeId;
+    document.getElementById('classIdPreview').innerText = classId;
+}
+
+// Đoạn mã menu chuyển lớp để chèn vào từng thẻ của học sinh (Sao chép nguyên bản menu dropdown của bạn)
+const OPTION_MENU_CHUYEN_LOP = document.getElementById('classDropdown') ? '' : `                    <option value="">➡️ Chuyển lớp...</option>
+                    <option value="class1">LỚP A1</option>
+                    <option value="class2">LỚP A2</option>
+                    <option value="svip">SVIP - L4-7/Lê Thu Hà</option>
+                    <option value="skykid">SKY - KID</option>
+                    <option value="smartkid">SMART-KID</option>
+                    <option value="cloudkidmg1">CLOUD-KID MG+1</option>
+                    <option value="ozonl23ngohang">OZON-L2+3/Ngô Hằng</option>
+                    <option value="mickeyl23thiphuong">MICKEY - L2+3/Thị Phương</option>
+                    <option value="oxfordl4thuphuong">OXFORD L4/Thu Phương</option>
+                    <option value="questl4thuphuong">QUEST - L4 Thu Phương</option>
+                    <option value="cambridgel4nhung">CAMBRIDGE - L4/Nhung</option>
+                    <option value="kingl4thuphuong">KING - L4/Thu Phương</option>
+                    <option value="galaxyl4minhphuong">GALAXY - L4/Minh Phương</option>
+                    <option value="kindl5tan">KIND L5 - Tân</option>
+                    <option value="apollol5yen">APOLLO L5 - Yến</option>
+                    <option value="likel5thuphuong">LIKE L5-Thu Phương</option>
+                    <option value="smilel6haan">SMILE-L6-Hà An</option>
+                    <option value="starl6thanhthao">STAR-L6-Thanh Thảo</option>
+                    <option value="goodl6haan">GOOD-L6-Hà An</option>
+                    <option value="marsl6ngohang">MARS - L6-Ngô Hằng</option>
+                    <option value="parisl6minhphuong">PARIS-L6/Minh Phương</option>
+                    <option value="evic">EVIC</option>
+                    <option value="kidl7thanhthao">KID - L7- Thanh Thảo</option>
+                    <option value="bossvipl7lethuha">BOSS-VIP - L7/Lê Thu Hà</option>
+                    <option value="moonl7tramy">MOON-L7/Trà My</option>
+                    <option value="ilal7thuha">ILA-L7/Thu Hà</option>
+                    <option value="deltal7phuong">DELTA-L7/Phương</option>
+                    <option value="happyl8maily">Happy - L8/Mai Ly</option>
+                    <option value="sunl8maily">Sun - L8/Mai Ly</option>
+                    <option value="highl8thuha">High - L8/Thu Hà</option>
+                    <option value="hopel8tramy">HOPE-L8/TRÀ MY</option>
+                    <option value="bigl9maily">BIG-L9/Mai Ly</option>
+                    <option value="superl9thuha">SUPER - L9/Thu Hà</option>
+                    <option value="seal9thuha">SEA - L9/Thu Hà</option>
+                    <option value="clcl9thuha">CLC-L9/Thu Hà</option>
+                    <option value="winl10thuha">WIN - L10/Thu Hà</option>
+                    <option value="smartl10haan">SMART - L10/Hà An</option>
+                    <option value="cloudl10haan">CLOUD - L10/Hà An</option>
+                    <option value="tryl10thuha">TRY - L10/Thu Hà</option>
+                    <option value="canl11lethuha">CAN - L11/Lê Thu Hà</option>
+                    <option value="oceanl11">OCEAN-L11</option>
+                    <option value="oce">OCE</option>
+                    <option value="victorya">VICTORYA</option>
+                    <option value="athenal12maily">ATHENA-L12/Mai Ly</option>
+                    <option value="ieltswonderfulthuha">IELTS-WONDERFUL/Thu Hà</option>
+                    <option value="spacex">SPACEX</option>
+                    <option value="funiel12lethuha">FUN - IE-L12/Lê Thu Hà</option>
+                    <option value="ielts326">IELTS 3/26</option>
+                    <option value="l12blue">L12-BLUE</option>
+                    <option value="e1al12lethuha">E1A - L12/ Lê Thu Hà</option>`;
+
+function generateMarkup() {
+    const dayText = document.getElementById('dayText').value.trim();
+    const timeText = document.getElementById('timeText').value.trim();
+    
+    // Lấy thông tin từ Dropdown lớp
+    const classSelect = document.getElementById('classDropdown');
+    const classId = classSelect.value; // Ví dụ: svip, class1, cloudl10haan...
+    const classNameText = classSelect.options[classSelect.selectedIndex].getAttribute('data-name'); // Lấy tên hiển thị tiếng Việt
+
+    const dayId = convertToSlug(dayText);
+    const timeId = convertTimeToId(timeText, dayId);
+    
+    let currentStNum = parseInt(document.getElementById('startIdNum').value.trim()) || 1;
+    const lines = document.getElementById('rawList').value.split('\n');
+
+    let studentsHTML = "";
+    let displayIndex = 1;
+
+    // Lấy chuỗi danh sách các option chuyển lớp từ phần select ở trên để nhúng tự động xuống học sinh
+    const menuOptions = document.getElementById('classDropdown').innerHTML;
+
+    lines.forEach(line => {
+        if(line.trim() !== "") {
+            let info = line.split('-');
+            let name = info[0] ? info[0].trim() : "Chưa nhập tên";
+            let phone = info[1] ? info[1].trim() : "0000000000";
+            
+            // Định dạng ID học sinh chuyên nghiệp: ví dụ st_svip_1, st_class1_1
+            let sid = `st_${classId}_${currentStNum}`;
+
+            studentsHTML += `            <div class="student-card" id="${sid}">
+                <div>${displayIndex}. ${name}</div>
+                <div class="btn-group">
+                    <button class="btn-yes" onclick="setAttendance('${sid}', '${classId}', true)">Có</button>
+                    <button class="btn-no" onclick="setAttendance('${sid}', '${classId}', false)">Vắng</button>
+                    <a href="tel:${phone.replace(/\s/g, '')}" class="btn-call">📞 ${phone}</a>
+                </div>
+                <select onchange="moveStudentDirect('${sid}', this.value)">
+                    <option value="">➡️ Chuyển lớp...</option>
+${menuOptions}
+                </select>
+                <select onchange="updateClassAbsentList('${classId}')">
+                    <option value="">-- Ghi chú --</option>
+                    <option value="Nghỉ phép">Nghỉ phép</option>
+                    <option value="Đi muộn">Đi muộn</option>
+                </select>
+            </div>\n`;
+            
+            currentStNum++;
+            displayIndex++;
+        }
+    });
+
+    if(studentsHTML === "") {
+        studentsHTML = `            \n`;
     }
+
+    // Xuất chuỗi HTML hoàn chỉnh theo đúng cấu trúc động mới của bạn
+    const finalHTML = `<div class="main-btn" onclick="toggle('${dayId}')">► ${dayText}</div>
+<div id="${dayId}" class="section">
+    <div class="time-btn" onclick="toggle('${timeId}')">${timeText}</div>
+    <div id="${timeId}" class="section">
+        
+        <div class="class-btn" onclick="toggle('list-${classId}')">${classNameText.toUpperCase()} <span id="count-${classId}" style="color:#fbbf24;">(0/0)</span> ▼</div>
+        <div id="list-${classId}" class="section" data-id="${classId}">
+            
+${studentsHTML}
+            <div class="class-absent-list" id="absent-${classId}">Danh sách vắng:<br>Không có</div>
+            <button class="btn-copy" onclick="copyAbsentList('${classId}')">📋 Copy DS Vắng</button>
+        </div>
+
+    </div>
+</div>`;
+
+    document.getElementById('codeResult').innerText = finalHTML;
+    document.getElementById('outputArea').style.display = 'block';
+}
+
+function copyToClipboard() {
+    const text = document.getElementById('codeResult').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Đã sao chép đoạn mã HTML thành công!");
+    }).catch(() => {
+        alert("Thao tác thất bại, hãy bôi đen để copy thủ công!");
+    });
+}
+
+// Chạy khởi tạo ID lần đầu tiên khi mở trang
+syncAllIDs();
 </script>
 
 </body>
