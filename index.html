@@ -270,10 +270,13 @@ function generateMarkup() {
     }
 
     // CẤU TRÚC ĐÃ ĐƯỢC SỬA ĐỔI: Bọc đầy đủ theo Thứ -> Phiên Học -> Lớp Học
-    const finalHTML = `<div class="main-btn" onclick="toggle('${dayId}')">► ${dayText.toUpperCase()}</div>
-<div id="${dayId}" class="section">
-    <div class="time-btn" onclick="toggle('${timeId}')">${timeText}</div>
-    <div id="${timeId}" class="section">
+    const finalHTML = `
+    <//2//////////////////////////////////////////////////////////////////////////>
+         <div class="main-btn" onclick="toggle('${dayId}')">► ${dayText.toUpperCase()}</div>
+         <div id="${dayId}" class="section">
+         <div class="time-btn" onclick="toggle('${timeId}')">${timeText}</div>
+         <div id="${timeId}" class="section">
+                <///2//*************************************************///////>
         
         <div class="class-btn" onclick="toggle('list-${classId}')">${classDisplayName} <span id="count-${classId}" style="color:#fbbf24;">(0/0)</span> ▼</div>
         <div id="list-${classId}" class="section" data-id="${classId}" data-name="${classDisplayName}">
@@ -284,10 +287,10 @@ ${studentsHTML}
                 <button class="btn-copy" onclick="copyAbsentList('${classId}')">📋 Copy DS Vắng</button>
             </div>
         </div>
-
+                <///2//****************Dán lớp khác ở ngay bên dưới*********************************///////>
     </div>
-</div>`;
-
+</div>;
+  <//2//////////////////////////////////////////////////////////////////////////>`
     document.getElementById('codeResult').innerText = finalHTML;
     document.getElementById('outputArea').style.display = 'block';
 }
