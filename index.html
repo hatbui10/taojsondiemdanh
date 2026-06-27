@@ -26,16 +26,30 @@
     <h2>🛠️ Bộ Tạo Lịch Học & Điểm Danh Tự Động Toàn Diện</h2>
     
     <div class="form-group">
-        <label>1. Nhập Tên Thứ hiển thị (Ví dụ: THỨ 2, THỨ 5, THỨ 7...):</label>
-        <input type="text" id="dayText" value="THỨ 5" oninput="syncAllIDs()">
-        <span class="preview-slug">👉 Mã ID Ngày tương ứng: <strong id="dayIdPreview">thu-5</strong></span>
-    </div>
+    <label>1. Chọn Thứ hiển thị:</label>
+    <select id="dayText" onchange="syncAllIDs()">
+        <option value="THỨ 2">THỨ 2</option>
+        <option value="THỨ 3">THỨ 3</option>
+        <option value="THỨ 4">THỨ 4</option>
+        <option value="THỨ 5" selected>THỨ 5</option>
+        <option value="THỨ 6">THỨ 6</option>
+        <option value="THỨ 7">THỨ 7</option>
+        <option value="CHỦ NHẬT">CHỦ NHẬT</option>
+    </select>
+    <span class="preview-slug">👉 Mã ID Ngày tương ứng: <strong id="dayIdPreview">thu-5</strong></span>
+</div>
 
     <div class="form-group">
-        <label>2. Thông tin Phiên học & Thời gian:</label>
-        <input type="text" id="timeText" value="18:30 — PHIÊN HỌC" oninput="syncAllIDs()">
-        <span class="preview-slug">👉 Mã ID Thời gian tự sinh: <strong id="timeIdPreview">t1830_thu-5</strong></span>
-    </div>
+    <label>2. Thông tin Phiên học & Thời gian:</label>
+    <select id="timeText" onchange="syncAllIDs()">
+        <option value="Ca : 18h00">Ca : 18h00</option>
+        <option value="Ca : 18h15">Ca : 18h15</option>
+        <option value="Ca : 18h30" selected>Ca : 18h30</option>
+        <option value="Ca : 18h45">Ca : 18h45</option>
+        <option value="Ca : 20h00">Ca : 20h00</option>
+    </select>
+    <span class="preview-slug">👉 Mã ID Thời gian tự sinh: <strong id="timeIdPreview">t1830_thu-5</strong></span>
+</div>
 
     <div class="form-group">
         <label>3. Chọn Tên Lớp Học (Hệ thống tự nhận diện mã chữ):</label>
