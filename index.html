@@ -184,13 +184,23 @@ function generateMarkup() {
     let displayIndex = 1;
 
     lines.forEach(line => {
-        if(line.trim() !== "") {
-            let info = line.split(/\t|-|\s{2,}/);
-            let name = info[0] ? info[0].trim() : "Chưa nhập tên";
-            let phone ="";
-            
-            let cleanPhone = phone.replace(/\s/g, '');
-            let sid = `st_${classId}_${currentStNum}`;
+    if(line.trim() !== "") {
+        // 1. Tách dòng thành Tên và Số điện thoại dựa trên dấu Tab, dấu gạch ngang hoặc khoảng trắng kép
+        let info = line.split(/\t|-|\s{2,}/);
+        
+        // 2. Phần đầu tiên chắc chắn là Tên
+        let name = info[1] ? info[0].trim() : "Chưa nhập tên"; 
+        
+        // 3. Phần thứ hai (hoặc phần tử cuối) chính là số điện thoại gốc
+        let rawPhone = info[info.length - 1] ? info[info.length - 1].trim() : "";
+        
+        // Lọc sạch số điện thoại (chỉ giữ lại các chữ số) để truyền vào thẻ href="tel:"
+        let cleanPhone = rawPhone.replace(/[^0-9]/g, "");
+        
+        // 4. Ép hiển thị text số điện thoại trên giao diện bằng rỗng (để ẩn đi như bạn muốn)
+        let phone = ""; 
+
+        let sid = `st_${classId}_${currentStNum}`;
 
             studentsHTML += `            <div class="student-card" id="${sid}">
                 <div>${displayIndex}. ${name}\t${phone}</div>
