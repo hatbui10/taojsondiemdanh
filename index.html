@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+localStorage.clear();
+sessionStorage.clear();
+location.reload();<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -15,6 +17,7 @@
         }
         .converter-container {
             max-width: 700px;
+            
             margin: auto;
             background: white;
             padding: 25px;
@@ -85,7 +88,54 @@
     <h2>🛠️ TOOL SINH CODE DỮ LIỆU</h2>
     
     <label for="maLop">Mã lớp (Ví dụ: 12A1, 12B2):</label>
-    <input type="text" id="maLop" value="12A1" placeholder="Nhập mã lớp để gom nhóm...">
+    
+    <select id="maLop">
+            <option value="SKY-KID">SKY-KID  T2-237</option>
+            <option value="12A1">12A1</option>
+            <option value="SMART-KID">SMART-KID  T2-237</option>
+            <option value="OZON-L2+3/Ngô Hằng">OZON-L2+3/Ngô Hằng T3-158</option>
+            <option value="MICKEY - L2+3/Thị Phương"> MICKEY - L2+3/Thị Phương T3-158   </option>
+            <option value="OXFORD  L4/Thu Phương">OXFORD  L4/Thu Phương </option>
+            <option value="QUEST L4 Thu Phương">QUEST L4 Thu Phương T3-158</option>
+            <option value="CAMBRIDGE - L4/Nhung">CAMBRIDGE - L4/Nhung  T4-158</option>
+            <option value="KING - L4/Thu Phương">KING - L4/Thu Phương</option>
+            <option value="GALAXY - L4/Minh Phương">GALAXY - L4/Minh Phương</option>
+            <option value="KIND L5 /Tân">KIND L5 /Tân</option>
+            <option value="APOLLO L5/Yến ">APOLLO L5/Yến </option>
+            <option value="LIKE L5/Thu Phương">LIKE L5/Thu Phương</option>
+            <option value="SMILE-L6/Hà An">SMILE-L6/Hà An</option>
+            <option value="STAR-L6/Thanh Thảo">STAR-L6/Thanh Thảo</option>
+            <option value="GOOD-L6/ Hà An ">GOOD-L6/ Hà An </option>
+            <option value="MARS - L6/Ngô Hằng">MARS - L6/Ngô Hằng</option>
+            <option value="PARIS-L6/Minh Phương">PARIS-L6/Minh Phương</option>
+            <option value="EVIC">EVIC</option>
+            <option value="KID E7">KID E7</option>
+            <option value="BOSS-VIP - L7/Lê Thu Hà">BOSS-VIP - L7/Lê Thu Hà</option>
+            <option value="MOON-L7/Trà My">MOON-L7/Trà My</option>
+            <option value="ILA-L7 - Thu Hà">ILA-L7 - Thu Hà</option>
+            <option value="DELTA-L7 - Phương">DELTA-L7 - Phương</option>
+            <option value="Happy - L8/Mai Ly">Happy - L8/Mai Ly</option>
+            <option value="Sun - L8/Mai Ly">Sun - L8/Mai Ly</option>
+            <option value="High - L8/Thu Hà">High - L8/Thu Hà</option>
+            <option value="HOPE-L8 TRÀ MY">HOPE-L8 TRÀ MY</option>
+            <option value="BIG-L9/Mai Ly">BIG-L9/Mai Ly</option>
+            <option value="SUPER - Thu Hà - L9">SUPER - Thu Hà - L9</option>
+            <option value="SEA - L9/Thu Hà">SEA - L9/Thu Hà</option>
+            <option value="CLC-L9/Thu Hà">CLC-L9/Thu Hà</option>
+            <option value="WIN - L10/Thu Hà">WIN - L10/Thu Hà</option>
+            <option value="SMART - L10/Hà An">SMART - L10/Hà An</option>
+            <option value="CLOUD - L10/Hà An">CLOUD - L10/Hà An</option>
+            <option value="TRY - L10/Thu Hà">TRY - L10/Thu Hà</option>
+            <option value="CAN - L11/Lê Thu Hà">CAN - L11/Lê Thu Hà</option>
+            <option value="VICTORYA">VICTORYA</option>
+            <option value="OCEAN-L11">OCEAN-L11</option>
+            <option value="ATHENA-L12/Mai Ly">ATHENA-L12/Mai Ly</option>
+            <option value="IELTS-WONDERFUL/Thu Hà">IELTS-WONDERFUL/Thu Hà</option>
+            <option value="SPACEX">SPACEX</option>
+            <option value="FUN - IE-L12/Lê Thu Hà">FUN - IE-L12/Lê Thu Hà</option>
+            <option value="L12-BLUE">L12-BLUE</option>
+            
+        </select>
 
     <label for="inputData">Dán danh sách học sinh vào đây:</label>
     <p class="hint">Hỗ trợ định dạng Sao chép từ Excel hoặc Zalo dạng: "Tên_Học_Sinh [Khoảng_Trắng/Tab] Số_Điện_Thoại"</p>
